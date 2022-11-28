@@ -1,3 +1,5 @@
+import random
+
 def fungsi(xy):
     x = xy[0]
     y = xy[1]
@@ -53,3 +55,4 @@ def PSO(xy0, xy1, xy2, v0, c1, c2, r1, r2, w, iterasi=1, pBest0=None, pBest1=Non
 
 
 PSO([1, 1], [-1, -1], [2, 1], [0, 0], 1, 1/2, 1, 1, 1)
+#PSO([random.randint(-5,5), random.randint(-5,5)], [random.randint(-5,5), random.randint(-5,5)], [random.randint(-5,5), random.randint(-5,5)],[0,0], 1, 1/2, random.randint(0,1), random.randint(0,1), 1)
