@@ -1,4 +1,5 @@
 import math
+import random
 
 def fungsi(x):
     return (-4 * x) * (math.sin(x))
@@ -53,3 +54,4 @@ def PSO(x0, x1, x2, v0, c1, c2, r1, r2, w, iterasi=1, pBest0=None, pBest1=None, 
 
 
 PSO(0, math.pi/2, math.pi, 0, 1/2, 1, 1/2, 1/2, 1)
+# PSO(random.uniform(0, math.pi), random.uniform(0, math.pi), random.uniform(0, math.pi), 0, 1/2, 1, random.randint(0,1), random.randint(0,1), 1)
