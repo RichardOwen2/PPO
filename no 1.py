@@ -24,7 +24,6 @@ def PSO(x0, x1, x2, v0, c1, c2, r1, r2, w, iterasi=1, pBest0=None, pBest1=None, 
         gBest = findGBest(x0, x1, x2)
 
         print("gBest = ", gBest)
-        print("nilai minimum = ", fungsi(gBest))
         print()
 
         if (pBest0 == None and pBest1 == None and pBest2 == None):
@@ -46,6 +45,8 @@ def PSO(x0, x1, x2, v0, c1, c2, r1, r2, w, iterasi=1, pBest0=None, pBest1=None, 
         print("V0 = ", V0)
         print("V1 = ", V1)
         print("V2 = ", V2)
+        print()
+        print("nilai minimum = ", fungsi(gBest))
         print()
 
         x0 = x0 + V0
