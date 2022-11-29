@@ -69,4 +69,4 @@ while (index < 10):
     data_xn.append(random.uniform(0, math.pi))
     index += 1
 
-PSO(data_xn, [random.uniform(0,1),random.uniform(0,1)], 0, 1/2, 1, random.randint(0,1), random.randint(0,1), 1)
+PSO(data_xn, random.uniform(0,1), 0, 1/2, 1, random.randint(0,1), random.randint(0,1), 1)
