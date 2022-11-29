@@ -1,51 +1,51 @@
-import math
 import random
 
-def fungsi(x):
-    return (-4 * x) * (math.sin(x))
+def fungsi(xy):
+    x = xy[0]
+    y = xy[1]
+    return (x**2 + y - 11)**2 + (x + y**2 - 7)**2
 
 
-def findGBest(xn):
+def findGBest(xyn):
     sample = []
     index = 0
-    while (index < len(xn)):
-        sample.append(fungsi(xn[index]))
+    while (index < len(xyn)):
+        sample.append(fungsi(xyn[index]))
         index += 1
 
     return sample.index(min(sample))
 
 
-def PSO(xn, v0, c1, c2, r1, r2, w, iterasi=1, pBest=None):
+def PSO(xyn, v0, c1, c2, r1, r2, w, iterasi=1, pBest=None):
     if iterasi < 4:
         print("iterasi ke-", iterasi)
 
         index = 0
-        while(index < len(xn)):
-            print("x" + str(index) + " = ",end="")
-            print(xn[index])
+        while(index < len(xyn)):
+            print("xy" + str(index) + " = ",end="")
+            print(xyn[index])
             index += 1
 
-        gBest = xn[findGBest(xn)]
+        gBest = xyn[findGBest(xyn)]
         print("gBest = ", gBest)
 
         if (pBest == None):
-            pBest = xn
+            pBest = xyn
         else:
             index = 0
-            while (index < len(xn)):
-                if fungsi(pBest[index]) > fungsi(xn[index]):
-                    pBest[index] = xn[index]
+            while (index < len(xyn)):
+                if fungsi(pBest[index]) > fungsi(xyn[index]):
+                    pBest[index] = xyn[index]
                 index += 1
 
         V = []
-
         index = 0
-        while (index < len(xn)):
-            V.append(w*v0 + c1 * r1 * (pBest[index] - xn[index]) + c2 * r2 * (gBest - xn[index]))
+        while (index < len(xyn)):
+            V.append([w*v0[0] + c1 * r1 * (pBest[index][0] - xyn[index][0]) + c2 * r2 * (gBest[0] - xyn[index][0]), w*v0[1] + c1 * r1 * (pBest[index][1] - xyn[index][1]) + c2 * r2 * (gBest[1] - xyn[index][1])])
             index += 1
 
         index = 0
-        while (index < len(xn)):
+        while (index < len(xyn)):
             print("V"+ str(index) + " = ",end="")
             print(V[index])
             index += 1
@@ -55,19 +55,21 @@ def PSO(xn, v0, c1, c2, r1, r2, w, iterasi=1, pBest=None):
         print()
 
         index = 0
-        while (index < len(xn)):
-            xn[index] = xn[index] + V[index]
+        while (index < len(xyn)):
+            xyn[index][0] = xyn[index][0] + V[index][0]
+            xyn[index][1] = xyn[index][1] + V[index][1]
             index += 1
 
-        PSO(xn, v0, c1, c2, r1, r2,w, iterasi+1, pBest)
+        PSO(xyn, v0, c1, c2, r1, r2,w, iterasi+1, pBest)
 
 
-# PSO(0, math.pi/2, math.pi, 0, 1/2, 1, 1/2, 1/2, 1)
+# PSO([[1, 1], [-1, -1], [2, 1]], [0, 0], 1, 0.5, 1, 1, 1)
 
 index = 0
-data_xn = []
+data_xyn = []
 while (index < 10):
-    data_xn.append(random.uniform(0, math.pi))
+    data_xyn.append([random.randint(-5,5), random.randint(-5,5)])
+    # data_xyn.append(random.uniform(-5,5), random.uniform(-5,5)])
     index += 1
 
-PSO(data_xn, [random.uniform(0,1),random.uniform(0,1)], 0, 1/2, 1, random.randint(0,1), random.randint(0,1), 1)
+PSO(data_xyn, [random.uniform(0,1),random.uniform(0,1)], 1, 1/2, random.uniform(0,1), random.uniform(0,1), 1)
